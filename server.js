@@ -10,10 +10,18 @@ MongoClient.connect(connectionString)
         const db = client.db('milkshake-tracker')
         const milkshakeCollection = db.collection('flavors')
 
+        app.set('view engine', 'ejs')
+
         app.use(bodyParser.urlencoded({ extended: true }))
 
         app.get('/', (req, res) => {
-            res.sendFile(__dirname + '/index.html')
+            db.collection('flavors')
+                .find()
+                .toArray()
+                .then(results => {
+                    res.render('index.ejs', {flavors: results})
+                })
+                .catch(error => console.error(error))
         })
 
         app.post('/flavors', (req, res) => {

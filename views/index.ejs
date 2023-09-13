@@ -13,5 +13,16 @@
         <input type="text" placeholder="rating" name="rating">
         <button type="submit">Submit</button>
     </form>
+
+    <h2>Flavors</h2>
+
+    <ul class="flavors"
+        <% for(let i = 0; i <= flavors.length; i++){%>
+        <li class="flavor">
+            <span><%= flavors[i].flavor %></span>
+            <span><%= flavors[i].rating %></span>
+        </li>
+        <% } %>
+    </ul>
 </body>
 </html>
