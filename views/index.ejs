@@ -16,13 +16,16 @@
 
     <h2>Flavors</h2>
 
-    <ul class="flavors"
-        <% for(let i = 0; i <= flavors.length; i++){%>
+    <ul class="flavors">
+        <!-- Loop through quotes -->
+        <% for(var i = 0; i <= flavors.length; i++) {%>
         <li class="flavor">
-            <span><%= flavors[i].flavor %></span>
-            <span><%= flavors[i].rating %></span>
+          <!-- Output name from the iterated quote object -->
+          <span><%= flavors[i].flavor %></span>
+          <!-- Output quote from the iterated quote object -->
+          <span><%= flavors[i].rating %></span>
         </li>
         <% } %>
-    </ul>
+      </ul>
 </body>
 </html>
