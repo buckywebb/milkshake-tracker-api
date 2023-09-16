@@ -15,7 +15,7 @@ MongoClient.connect(connectionString)
         app.use(bodyParser.urlencoded({ extended: true }))
 
         app.get('/', (req, res) => {
-            db.collection('flavors')
+            milkshakeCollection
                 .find()
                 .toArray()
                 .then(results => {
