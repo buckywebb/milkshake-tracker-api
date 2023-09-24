@@ -14,6 +14,7 @@ MongoClient.connect(connectionString)
 
         app.use(bodyParser.urlencoded({ extended: true }))
         app.use(express.static('public'))
+        app.use(bodyParser.json())
 
 
         app.get('/', (req, res) => {
@@ -31,6 +32,26 @@ MongoClient.connect(connectionString)
                 .insertOne(req.body)
                 .then(result => {
                     res.redirect('/')
+                })
+                .catch(error => console.error(error))
+        })
+
+        app.put('/flavors', (req, res) => {
+            milkshakeCollection
+                .findOneAndUpdate(
+                    {flavor: 'Walnut'},
+                    {
+                        $set: {
+                            flavor: req.body.flavor,
+                            rating: req.body.rating,
+                        },
+                    },
+                    {
+                        upsert: true,
+                    }
+                )
+                .then(result => {
+                    res.json('Success')
                 })
                 .catch(error => console.error(error))
         })
