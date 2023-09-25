@@ -56,6 +56,18 @@ MongoClient.connect(connectionString)
                 .catch(error => console.error(error))
         })
 
+        app.delete('/flavors', (req, res) => {
+            milkshakeCollection
+                .deleteOne({flavor: req.body.flavor})
+                .then(result => {
+                    if (result.deletedCount === 0){
+                        return res.json('No walnut to delete')
+                    }
+                    res.json(`Deleted Walnut Shake`)
+                })
+                .catch(error => console.error(error))
+        })
+
         app.listen(3000, function () {
             console.log('listening on 3000')
         })
